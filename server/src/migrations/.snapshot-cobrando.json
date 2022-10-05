@@ -1,0 +1,140 @@
+{
+  "namespaces": [
+    "public"
+  ],
+  "name": "public",
+  "tables": [
+    {
+      "columns": {
+        "codigo": {
+          "name": "codigo",
+          "type": "serial",
+          "unsigned": true,
+          "autoincrement": true,
+          "primary": true,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "nombre": {
+          "name": "nombre",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "text"
+        },
+        "presupuesto": {
+          "name": "presupuesto",
+          "type": "double precision",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "double"
+        }
+      },
+      "name": "departamento",
+      "schema": "public",
+      "indexes": [
+        {
+          "keyName": "departamento_pkey",
+          "columnNames": [
+            "codigo"
+          ],
+          "composite": false,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {}
+    },
+    {
+      "columns": {
+        "codigo": {
+          "name": "codigo",
+          "type": "serial",
+          "unsigned": true,
+          "autoincrement": true,
+          "primary": true,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "nif": {
+          "name": "nif",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "text"
+        },
+        "nombre": {
+          "name": "nombre",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "text"
+        },
+        "apellido1": {
+          "name": "apellido1",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "text"
+        },
+        "apellido2": {
+          "name": "apellido2",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "text"
+        },
+        "codigo_departamento_codigo": {
+          "name": "codigo_departamento_codigo",
+          "type": "int",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "integer"
+        }
+      },
+      "name": "empleado",
+      "schema": "public",
+      "indexes": [
+        {
+          "keyName": "empleado_pkey",
+          "columnNames": [
+            "codigo"
+          ],
+          "composite": false,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {
+        "empleado_codigo_departamento_codigo_foreign": {
+          "constraintName": "empleado_codigo_departamento_codigo_foreign",
+          "columnNames": [
+            "codigo_departamento_codigo"
+          ],
+          "localTableName": "public.empleado",
+          "referencedColumnNames": [
+            "codigo"
+          ],
+          "referencedTableName": "public.departamento",
+          "updateRule": "cascade"
+        }
+      }
+    }
+  ]
+}
