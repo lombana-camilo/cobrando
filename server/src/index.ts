@@ -27,7 +27,6 @@ async function main() {
     // Schema
     const schema = await buildSchema({
       resolvers: [EmpleadoResolver,DptoResolver],
-      /* authChecker */
     });
 
     // Apollo Server
@@ -44,7 +43,9 @@ async function main() {
       ],
     });
     await apolloServer.start();
-    apolloServer.applyMiddleware({ app: server });
+    apolloServer.applyMiddleware({ app: server, cors:false });
+
+      // Run seed to create initial Departments
 
     server.listen(port, () => {
       console.log(`listening on port ${port}`);

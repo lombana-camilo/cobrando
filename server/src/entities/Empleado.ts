@@ -25,6 +25,7 @@ export class Empleado {
   @Property({ type: "text" })
   apellido2!: string;
 
+  @Field(()=>Departamento)
   @ManyToOne(() => Departamento)
   codigo_departamento!: Departamento;
 }
