@@ -10,9 +10,9 @@ const initialDepartamentos: Departamento[] = [
 
 export class Seed extends Seeder {
   async run(em: EntityManager) {
+    await em.nativeDelete(Departamento, {});
     initialDepartamentos.forEach(async (dep) => {
       let newDepartamento = em.create(Departamento, dep);
-      /* await em.persistAndFlush(newDepartamento); */
     });
   }
 }
