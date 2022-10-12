@@ -10,16 +10,18 @@ export default {
   dbName: config.get<string>("dbName"),
   user: config.get<string>("dbUser"),
   password: config.get<string>("dbPassword"),
-  type: "postgresql",
+  host: config.get<string>("host"),
+   type: "postgresql",
   debug: process.env.NODE_ENV !== "production",
 
   //database tables
-  entities: ["./src/entities/**/*.ts"],
-   seeder:{
+  entities: ["./build/src/entities/**/*.*","./entities/**/*.*"],
+  seeder: {
     path: path.join(__dirname, "./seeds"),
-    defaultSeeder: 'Seed', // default seeder class name
-    glob: '!(*.d).{js,ts}', // how to match seeder files (all .js and .ts files, but not .d.ts)
-    emit: 'ts', // seeder generation mode
+    /* path: "./build/src/seeds", */
+    defaultSeeder: "Seed", // default seeder class name
+    glob: "!(*.d).{js,ts}", // how to match seeder files (all .js and .ts files, but not .d.ts)
+    emit: process.env.NODE_ENV === "production"? "js" : "ts", // seeder generation mode
     fileName: (className: string) => className, // seeder file naming convention
   },
 } as Parameters<typeof MikroORM.init>[0];

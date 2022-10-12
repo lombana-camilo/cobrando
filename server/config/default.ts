@@ -8,5 +8,5 @@ export default {
   dbUser: DB_USER,
   dbPassword: DB_PASSWORD,
   dbName: DB_NAME,
+  host: "localhost",
 };
-

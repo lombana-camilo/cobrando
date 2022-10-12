@@ -1,8 +1,4 @@
 import { EntityManager } from "@mikro-orm/postgresql";
-import bcrypt from "bcrypt";
-import { ApolloError } from "apollo-server";
-import { Ctx } from "type-graphql";
-import { Context } from "./../types/context";
 import {
   CreateDepartamentoInput,
   Departamento,
@@ -10,7 +6,7 @@ import {
 
 export class DptoService {
   async departamentos(em: EntityManager) {
-    return em.find(Departamento, {});
+    return await em.find(Departamento, {});
   }
 
   async createDepartamento(em: EntityManager, input: CreateDepartamentoInput) {

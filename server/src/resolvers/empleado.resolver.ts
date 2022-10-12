@@ -1,7 +1,6 @@
 import { Arg, Ctx, Mutation, Query, Resolver } from "type-graphql";
 import { Context } from "./../types/context";
 import { EmpleadoService } from "./../services/empleado.service";
-import { Departamento } from "./../entities/Departamento";
 import {
   CreateEmpleadoInput,
   DeleteEmpleadoInput,

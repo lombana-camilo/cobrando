@@ -13,11 +13,14 @@ import {
 import { Context } from "./types/context";
 import { EmpleadoResolver } from "./resolvers/empleado.resolver";
 import { DptoResolver } from "./resolvers/departamento.resolver";
+import { exec } from "child_process";
+import { Seed } from "./seeds/seed";
 
 const port = config.get<string>("port");
 
 async function main() {
   try {
+      console.log({mikroConfig})
     // Mikroorm
     const orm = await MikroORM.init(mikroConfig);
     const em = orm.em as EntityManager;
@@ -45,7 +48,10 @@ async function main() {
     await apolloServer.start();
     apolloServer.applyMiddleware({ app: server, cors:false });
 
-      // Run seed to create initial Departments
+      //Seed
+      console.log("Seeding ______________")
+      const seeder = orm.getSeeder()
+      await seeder.seed(Seed)
 
     server.listen(port, () => {
       console.log(`listening on port ${port}`);

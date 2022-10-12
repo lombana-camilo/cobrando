@@ -1,14 +1,17 @@
-   FROM node:17
+FROM node:17
 
-   WORKDIR /api
+WORKDIR /api
 
-   COPY package.json .
+COPY package.json .
 
-   RUN npm install
+RUN npm install
 
-   COPY . .
+COPY . .
 
-   EXPOSE 1234
+RUN npm run build
 
+COPY .env ./build
 
-   CMD ["npm","run","dev"]
+EXPOSE 1234
+
+CMD ["npm","run","start"]

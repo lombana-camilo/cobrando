@@ -59,7 +59,6 @@ export const CreateEmployee = () => {
           },
         },
       });
-      console.log({ emp });
       navigate("/empleados");
     } catch (e: any) {
       console.log(e);
